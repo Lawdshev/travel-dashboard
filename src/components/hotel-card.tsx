@@ -3,7 +3,20 @@ import { PiBedFill, PiCurrencyNgnBold, PiSwimmingPool, PiWineLight } from "react
 import hotelImage from "../assets/images/Rectangle 3437.png";
 import { IoCalendarClearOutline, IoLocationOutline } from "react-icons/io5";
 
-const HotelCard = () => {
+
+interface Iprops {
+  name: string;
+  location: string;
+  price: number;
+  currency: string;
+  checkOutFrom: string;
+  checkOutTo: string;
+  reviewCount: string;
+  reviewScore: number;
+  imageUrl: string;
+}
+
+const HotelCard = (props: Iprops) => {
   return (
     <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden ">
       <div className="p-4 bg-white w-[97%] flex items-start">
@@ -19,7 +32,7 @@ const HotelCard = () => {
             <div className="space-y-4">
               <div>
                 <p className="text-xl font-semibold text-[#1D2433]">
-                  American Airlines
+                  {props.name}
                 </p>
                 <p className="font-medium text-[#1D2433] max-w-md">
                   18, Kenneth Agbakuru Street, Off Access Bank Admiralty Way,
@@ -47,7 +60,7 @@ const HotelCard = () => {
                 <span>123,450.00</span>
               </div>
               <p className="text-[#1D2433] font-medium">
-                Total Price: NGN 560,000
+                Total Price: {props.currency} {props.price}
               </p>
               <p className="text-[#1D2433] font-medium">
                 1 room x 10 nights incl. taxes

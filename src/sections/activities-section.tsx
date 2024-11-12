@@ -1,7 +1,9 @@
 import { PiRoadHorizonBold } from "react-icons/pi";
 import ActivitiesCard from "../components/activities-card";
+import useDestinationActivitiesSearch from "../services/use-getActivities";
 
-const ActivitiesSection = () => {
+const ActivitiesSection = ({ query }: { query: string }) => {
+  const { data, error, isLoading } = useDestinationActivitiesSearch(query);
   return (
     <div className="px-4 pb-4 bg-[#0054E4]">
       <div className="flex items-center justify-between  p-4">

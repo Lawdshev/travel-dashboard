@@ -1,7 +1,10 @@
 import { TbPlaneInflight } from "react-icons/tb";
 import FlightCard from "../components/flight-card";
+import useDestinationFlightsSearch from "../services/use-getFlights";
 
-const FlightsSection = () => {
+const FlightsSection = ({ query }: { query: string }) => {
+  const { data, error, isLoading } = useDestinationFlightsSearch(query);
+
   return (
     <div className="px-4 pb-4 bg-[#F0F2F5]">
       <div className="flex items-center justify-between  p-4">

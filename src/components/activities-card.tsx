@@ -6,7 +6,8 @@ import {
   PiCaretCircleDown,
 } from "react-icons/pi";
 import hotelImage from "../assets/images/Rectangle 3437.png";
-import { IoCalendarClearOutline, IoLocationOutline } from "react-icons/io5";
+import {  IoLocationOutline } from "react-icons/io5";
+
 
 const ActivitiesCard = () => {
   return (

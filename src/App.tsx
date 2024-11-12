@@ -13,8 +13,14 @@ import { PiGear } from "react-icons/pi";
 import FlightsSection from "./sections/flight-sections";
 import HotelsSection from "./sections/hotel-section";
 import ActivitiesSection from "./sections/activities-section";
+import { useState } from "react";
+import DestinationSearch from "./components/destination-search";
+
 
 function App() {
+  const [destination, setDestination] = useState<any>({});
+
+
   return (
     <div>
       <Navbar />
@@ -35,11 +41,25 @@ function App() {
                 <FaArrowRight />
                 <span>21 April 2024</span>
               </div>
-              <h1 className="text-2xl font-bold">Bahamas Family Trip</h1>
-              <div className="text-[#676E7E] flex items-center gap-2">
-                <span>New York,  United States of America </span>
+              {/* {destination && (
+                <h1 className="text-2xl font-bold">{destination} Trip</h1>
+              )} */}
+              <div className="text-[#676E7E] flex items-center gap-2 mt-2">
+                <DestinationSearch
+                  destination={destination}
+                  setDestination={setDestination}
+                />
+                {/* <div className="flex items-center gap-2 bg-[#F0F2F5] px-3 py-2 rounded-md">
+                  <CiSearch className="text-xl text-gray-500" />
+                  <input
+                    className="bg-transparent text-sm text-gray-700 p-1 outline-none"
+                    placeholder="Input destination"
+                    value={destination}
+                    onChange={handleSearch}
+                  />
+                </div>
                 <div className="w-[1px] h-4 bg-[#D0D5DD]"></div>
-                <span>Solo Trip</span>
+                <span>Solo Trip</span> */}
               </div>
               <div className="mt-4 flex gap-2 ">
                 {activities.map((activity) => (
@@ -71,9 +91,9 @@ function App() {
               Your trip itineraries are placed here
             </h6>
             <div className="mt-4 space-y-6">
-              <FlightsSection />
-              <HotelsSection />
-              <ActivitiesSection/>
+              <FlightsSection query={destination.dest_id ?? ""} />
+              <HotelsSection query={destination.dest_id ?? ""} />
+              <ActivitiesSection query={destination.dest_id ?? ""} />
             </div>
           </div>
         </div>
