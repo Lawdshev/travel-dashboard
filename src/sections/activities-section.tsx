@@ -1,9 +1,13 @@
 import { PiRoadHorizonBold } from "react-icons/pi";
 import ActivitiesCard from "../components/activities-card";
+import { useState } from "react";
 
 const ActivitiesSection = () => {
+  const [dataLength, setDataLength] = useState(0);
   return (
-    <div className="px-4 pb-4 bg-[#0054E4]">
+    <div className={`${
+      dataLength > 0 ? "h-[700px]" : ""
+    } "px-4 pb-4 bg-[#0054E4] overflow-y-scroll"`}>
       <div className="flex items-center justify-between  p-4">
         <div className="flex items-center gap-2 text-white">
           <PiRoadHorizonBold className="text-xl" />
@@ -13,7 +17,8 @@ const ActivitiesSection = () => {
           Add Activities
         </button>
       </div>
-      <div className="flex flex-col gap-4 px-4 ">
+      <div className="flex flex-col gap-4 p-4 ">
+        <ActivitiesCard />
         <ActivitiesCard />
         <ActivitiesCard />
       </div>
