@@ -1,18 +1,19 @@
 import axios from "axios";
-const fetchRequest = async (url: string, query: string) => {
+
+const fetchRequest = async (url: string) => {
+
   const options = {
     method: "GET",
     url,
-    params: { query },
     // headers: {
-    //   "x-rapidapi-key": "a5c17d9f8dmsh6ed36fd3b1bf1aap13dfe6jsn042f8b8e5586",
+    //   "x-rapidapi-key": "your-api-key",
     //   "x-rapidapi-host": "booking-com15.p.rapidapi.com",
     // },
   };
 
   try {
     const response = await axios.request(options);
-    return response.data.data??response.data;
+    return response.data.data ?? response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
@@ -32,4 +33,5 @@ const fetchRequest = async (url: string, query: string) => {
     }
   }
 };
+
 export default fetchRequest;

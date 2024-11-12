@@ -20,7 +20,6 @@ import DestinationSearch from "./components/destination-search";
 function App() {
   const [destination, setDestination] = useState<any>({});
 
-
   return (
     <div>
       <Navbar />

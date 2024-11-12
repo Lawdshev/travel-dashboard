@@ -2,27 +2,15 @@ import { FaStar, FaTimes } from "react-icons/fa";
 import { PiBedFill, PiCurrencyNgnBold, PiSwimmingPool, PiWineLight } from "react-icons/pi";
 import hotelImage from "../assets/images/Rectangle 3437.png";
 import { IoCalendarClearOutline, IoLocationOutline } from "react-icons/io5";
+import { IHotel } from "../utils/types";
 
-
-interface Iprops {
-  name: string;
-  location: string;
-  price: number;
-  currency: string;
-  checkOutFrom: string;
-  checkOutTo: string;
-  reviewCount: string;
-  reviewScore: number;
-  imageUrl: string;
-}
-
-const HotelCard = (props: Iprops) => {
+const HotelCard = (props: IHotel) => {
   return (
     <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden ">
       <div className="p-4 bg-white w-[97%] flex items-start">
         <div className="w-1/4">
           <img
-            src={hotelImage}
+            src={props.photoUrls[0]}
             alt="Hotel"
             className="w-full h-full object-cover"
           />
@@ -35,8 +23,7 @@ const HotelCard = (props: Iprops) => {
                   {props.name}
                 </p>
                 <p className="font-medium text-[#1D2433] max-w-md">
-                  18, Kenneth Agbakuru Street, Off Access Bank Admiralty Way,
-                  Lekki Phase1
+                  {props.countryCode}
                 </p>
               </div>
               <div className="flex items-center gap-4">
@@ -46,7 +33,9 @@ const HotelCard = (props: Iprops) => {
                 </div>
                 <div className="flex items-center text-[#676E7E] font-medium">
                   <FaStar color="#F4B93E" />
-                  <p className="text-[#676E7E] font-medium">8.5 (436)</p>
+                  <p className="text-[#676E7E] font-medium">
+                    {props.reviewScore} ({props.reviewCount})
+                  </p>
                 </div>
                 <div className="flex items-center gap-1">
                   <PiBedFill />
@@ -60,7 +49,8 @@ const HotelCard = (props: Iprops) => {
                 <span>123,450.00</span>
               </div>
               <p className="text-[#1D2433] font-medium">
-                Total Price: {props.currency} {props.price}
+                Total Price: {props.priceBreakdown.grossPrice.currency}{" "}
+                {props.priceBreakdown.grossPrice.value}
               </p>
               <p className="text-[#1D2433] font-medium">
                 1 room x 10 nights incl. taxes
@@ -71,7 +61,7 @@ const HotelCard = (props: Iprops) => {
           <div className="px-6 py-3 flex items-center justify-between  text-lg font-medium text-[#647995]">
             <div className="flex flex-wrap items-center gap-3">
               <span className="font-medium">Facilities:</span>
-              <span className="flex items-center gap-1" >
+              <span className="flex items-center gap-1">
                 <PiSwimmingPool />
                 <span>Pool</span>
               </span>
@@ -82,11 +72,11 @@ const HotelCard = (props: Iprops) => {
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-1">
                 <IoCalendarClearOutline color="#475367" />
-                <span className="font-medium">Check In: 20-04-2024</span>
+                <span className="font-medium">Check In: {props.checkin.fromTime}</span>
               </div>
               <div className="flex items-center gap-1">
                 <IoCalendarClearOutline color="#475367" />
-                <span className="font-medium">Check Out: 29-04-2024</span>
+                <span className="font-medium">Check Out: {props.checkout.untilTime} </span>
               </div>
             </div>
           </div>
