@@ -8,7 +8,7 @@ interface Iprops {
 const ActivityCard = ({ color, title, buttonColor, textColor }: Iprops) => {
   return (
     <div
-      className={`text-white p-4 md:p-6 rounded-lg w-full sm:w-[80%] md:w-[48%] lg:w-72 mx-auto`}
+      className={`text-white p-4 md:p-6 rounded-lg w-full  mx-auto`}
       style={{ backgroundColor: color }}
     >
       <h2

@@ -29,10 +29,10 @@ function App() {
     >
       <Navbar navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen} />
       <div className="p-4 sm:p-6 md:p-8 lg:p-3 xl:p-8 bg-[#f1f2f5] grid grid-cols-1 md:grid-cols-10 w-full space-y-4 md:space-x-1 md:space-y-0">
-        <div className="hidden md:block md:col-span-3 lg:col-span-2 overflow-hidden">
+        <div className="hidden lg:block lg:col-span-2 overflow-hidden">
           <Sidebar navbarOpen={navbarOpen} />
         </div>
-        <div className="bg-white w-full p-4 sm:p-6 md:p-8 col-span-1 md:col-span-7 lg:col-span-8">
+        <div className="bg-white w-full p-4 sm:p-6 md:p-8 col-span-10 lg:col-span-8">
           <div className="relative">
             <img src={banner} alt="" />
             <button className="p-3 rounded-md absolute top-4 left-4">
@@ -53,9 +53,11 @@ function App() {
                   setDestination={setDestination}
                 />
               </div>
-              <div className="mt-4 flex flex-wrap w-full gap-2 ">
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-9 gap-4 w-full ">
                 {activities.map((activity) => (
-                  <ActivityCard key={activity.title} {...activity} />
+                  <div className="col-span-1 sm:col-span-1 lg:col-span-3 lg:min-w-[200px]">
+                    <ActivityCard key={activity.title} {...activity} />
+                  </div>
                 ))}
               </div>
             </div>
