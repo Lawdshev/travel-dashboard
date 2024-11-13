@@ -38,13 +38,14 @@ const FlightsSection = ({ query }: { query: string }) => {
     }));
   }, [data]);
 
-  console.log({data,flightsData})
+  console.log({ data, flightsData });
 
   return (
     <div
       className={`${
-        data?.length > 0 ? "h-[700px]" : ""
-      } "px-4 pb-4 bg-[#F0F2F5] overflow-y-scroll"`}
+        !data || getRandomFlightData(5).length <= 0 ? " h-[700px]" : ""
+      } 
+     px-4 pb-4 bg-[#F0F2F5] overflow-y-scroll`}
     >
       <div className="flex items-center justify-between  p-4">
         <div className="flex items-center gap-2">
@@ -62,7 +63,7 @@ const FlightsSection = ({ query }: { query: string }) => {
         {flightsData?.map((flight: any, index: number) => (
           <FlightCard {...flight} key={index} />
         ))}
-        {!data && (
+        {!data && getRandomFlightData(5).length <= 0 && (
           <EmptyState
             icon={
               <PiWarehouseBold className="text-6xl text-gray-300" size={100} />

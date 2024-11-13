@@ -18,17 +18,25 @@ import { PiBasketLight } from "react-icons/pi";
 import { CiSquarePlus } from "react-icons/ci";
 import { PiCaretDown } from "react-icons/pi";
 import { RxCaretSort } from "react-icons/rx";
-
+import { RiHotelLine } from "react-icons/ri";
+import { LuPlane } from "react-icons/lu";
+import { RiFirstAidKitLine } from "react-icons/ri";
+import { RxCube } from "react-icons/rx";
+import { PiRoadHorizon } from "react-icons/pi";
+import { PiNewspaperClipping } from "react-icons/pi";
+import { PiStudent } from "react-icons/pi";
+import { PiSuitcaseRolling } from "react-icons/pi";
+import { PiPackageFill } from "react-icons/pi";
 const Sidebar = ({ navbarOpen }: { navbarOpen: boolean }) => {
   const menuItems = [
-    { name: "Activities", icon: FaUmbrellaBeach },
-    { name: "Hotels", icon: FaHotel },
-    { name: "Flights", icon: FaPlane },
-    { name: "Study", icon: FaGraduationCap },
-    { name: "Visa", icon: FaPassport },
-    { name: "Immigration", icon: FaPassport },
-    { name: "Medical", icon: FaStethoscope },
-    { name: "Vacation Packages", icon: FaBoxOpen },
+    { name: "Activities", icon: PiRoadHorizon },
+    { name: "Hotels", icon: RiHotelLine },
+    { name: "Flights", icon: LuPlane },
+    { name: "Study", icon: PiStudent },
+    { name: "Visa", icon: PiNewspaperClipping },
+    { name: "Immigration", icon: PiSuitcaseRolling },
+    { name: "Medical", icon: RiFirstAidKitLine },
+    { name: "Vacation Packages", icon: PiPackageFill },
   ];
 
   const navBarLinks = [
