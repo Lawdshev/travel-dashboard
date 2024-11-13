@@ -37,8 +37,8 @@ const HotelsSection = ({ query }: { query: string }) => {
   return (
     <div
       className={`${
-        data?.length > 0 ? "h-[700px]" : ""
-      } "px-4 pb-4 bg-[#344054] overflow-y-scroll"`}
+        !data || getRandomHotelData(5).length <= 0 ? "h-[700px]" : ""
+      } px-4 pb-4 bg-[#344054] overflow-y-scroll`}
     >
       <div className="flex items-center justify-between p-4">
         <div className="flex items-center gap-2 text-white">
@@ -53,7 +53,7 @@ const HotelsSection = ({ query }: { query: string }) => {
         {hotelData?.map((hotel: IHotel, index: number) => (
           <HotelCard {...hotel} key={index} />
         ))}
-        {!data && (
+        {!data || getRandomHotelData(5).length <= 0  && (
           <EmptyState
             icon={
               <PiWarehouseBold className="text-6xl text-gray-300" size={100} />
