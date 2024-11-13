@@ -38,7 +38,7 @@ const HotelsSection = ({ query }: { query: string }) => {
     <div
       className={`${
         !data || getRandomHotelData(5).length <= 0 ? "h-[700px]" : ""
-      } px-4 pb-4 bg-[#344054] overflow-y-scroll`}
+      }  px-2 md:px-4 pb-4 bg-[#344054] overflow-y-scroll`}
     >
       <div className="flex items-center justify-between p-4">
         <div className="flex items-center gap-2 text-white">
@@ -53,21 +53,23 @@ const HotelsSection = ({ query }: { query: string }) => {
         {hotelData?.map((hotel: IHotel, index: number) => (
           <HotelCard {...hotel} key={index} />
         ))}
-        {!data || getRandomHotelData(5).length <= 0  && (
-          <EmptyState
-            icon={
-              <PiWarehouseBold className="text-6xl text-gray-300" size={100} />
-            }
-            buttonText="Add Hotels"
-          />
+        {!data ||
+          (getRandomHotelData(5).length <= 0 && (
+            <EmptyState
+              icon={
+                <PiWarehouseBold
+                  className="text-6xl text-gray-300"
+                  size={100}
+                />
+              }
+              buttonText="Add Hotels"
+            />
+          ))}
+        {isLoading && (
+          <div className="flex items-center justify-center py-8 mx-auto text-center">
+            Fetching Hotels...
+          </div>
         )}
-        {
-          isLoading && (
-            <div className="flex items-center justify-center py-8 mx-auto text-center">
-              Fetching Hotels...
-            </div>
-          )
-        }
       </div>
     </div>
   );

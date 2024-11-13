@@ -38,14 +38,12 @@ const FlightsSection = ({ query }: { query: string }) => {
     }));
   }, [data]);
 
-  console.log({ data, flightsData });
-
   return (
     <div
       className={`${
         !data || getRandomFlightData(5).length <= 0 ? " h-[700px]" : ""
       } 
-     px-4 pb-4 bg-[#F0F2F5] overflow-y-scroll`}
+     px-2 md:px-4 pb-4 bg-[#F0F2F5] overflow-y-scroll`}
     >
       <div className="flex items-center justify-between  p-4">
         <div className="flex items-center gap-2">

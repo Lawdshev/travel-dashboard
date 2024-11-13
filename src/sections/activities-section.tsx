@@ -33,8 +33,8 @@ const ActivitiesSection = ({ query }: { query: string }) => {
   return (
     <div
       className={`${
-        !data|| getRandomActivityData(5).length <= 0 ? "h-[700px]" : ""
-      } px-4 pb-4 bg-[#0054E4] overflow-y-scroll`}
+        !data || getRandomActivityData(5).length <= 0 ? "h-[700px]" : ""
+      }  px-2 md:px-4 pb-4 bg-[#0054E4] overflow-y-scroll`}
     >
       <div className="flex items-center justify-between  p-4">
         <div className="flex items-center gap-2 text-white">
@@ -51,14 +51,18 @@ const ActivitiesSection = ({ query }: { query: string }) => {
         {activitiesData?.map((activity: any, index: number) => (
           <ActivitiesCard {...activity} key={index} />
         ))}
-        { !data|| getRandomActivityData(5).length <= 0 && (
-          <EmptyState
-            icon={
-              <PiWarehouseBold className="text-6xl text-gray-300" size={100} />
-            }
-            buttonText="Add Activities"
-          />
-        )}
+        {!data ||
+          (getRandomActivityData(5).length <= 0 && (
+            <EmptyState
+              icon={
+                <PiWarehouseBold
+                  className="text-6xl text-gray-300"
+                  size={100}
+                />
+              }
+              buttonText="Add Activities"
+            />
+          ))}
         {isLoading && (
           <div className="flex items-center justify-center py-8 mx-auto text-center">
             Fetching Activities...
