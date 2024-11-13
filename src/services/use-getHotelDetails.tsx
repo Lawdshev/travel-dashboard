@@ -8,7 +8,7 @@ const useHotelsSearch = (dest_id: string) => {
     queryKey: ["hotels", dest_id],
     queryFn: () =>
       fetchRequest(
-        `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?search_type=city&arrival_date=${dates.arrival}&departure_date=${dates.departure}&locale=en&dest_id=${dest_id}`,
+        `https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels?search_type=district&arrival_date=${dates.arrival}&departure_date=${dates.departure}&locale=en`,
       ),
     enabled: !!dest_id,
     retry: 1,

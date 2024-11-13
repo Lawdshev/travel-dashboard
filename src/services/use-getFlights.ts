@@ -8,7 +8,7 @@ const useDestinationFlightsSearch = (query: string) => {
     queryKey: ["flights", query],
     queryFn: () =>
       fetchRequest(
-        `/flights/searchFlights?fromId=BOM.AIRPORT&toId=DEL.AIRPORT&departDate=${dates.departure}&pageNo=1&adults=1&children=0%2C17&sort=BEST&cabinClass=ECONOMY&currency_code=AED`
+        `https://booking-com15.p.rapidapi.com/api/v1/flights/searchFlights?fromId=BOM.AIRPORT&toId=DEL.AIRPORT&departDate=${dates.departure}&pageNo=1&adults=1&children=0%2C17&sort=BEST&cabinClass=ECONOMY&currency_code=AED`
       ),
     enabled: !!query,
     retry: 1,
