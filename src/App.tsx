@@ -20,21 +20,22 @@ import { IDestination } from "./utils/types";
 
 function App() {
   const [destination, setDestination] = useState<IDestination>({} as IDestination);
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <div>
-      <Navbar />
-      <div className="p-8 bg-[#f1f2f5] flex gap-8">
-        <Sidebar />
-        <div className="bg-white p-4">
+    <div className="w-screen overscroll-x-hidden" style={{ overflowX: "hidden" }}>
+      <Navbar navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen} />
+      <div className="p-8 bg-[#f1f2f5] flex justify-between w-full">
+        <Sidebar navbarOpen={navbarOpen}/>
+        <div className="bg-white w-full p-4 lg:w-[70%] xl:w-[75%]">
           <div className="relative">
             <img src={banner} alt="" />
-            <button className="p-3 bg-[#d9edff] rounded-md absolute top-4 left-4">
+            <button className="p-3 rounded-md absolute top-4 left-4">
               <IoMdArrowRoundBack />
             </button>
           </div>
-          <div className="flex justify-between mt-2 ">
-            <div className="">
+          <div className="flex justify-between mt-2 w-full">
+            <div className="w-full">
               <div className="flex items-center gap-2 text-[#7A4504] bg-[#FEF4E6] py-1 px-2 text-sm w-fit">
                 <IoCalendarClearOutline />
                 <span>21 March 2024</span>
@@ -61,7 +62,7 @@ function App() {
                 <div className="w-[1px] h-4 bg-[#D0D5DD]"></div>
                 <span>Solo Trip</span> */}
               </div>
-              <div className="mt-4 flex gap-2 ">
+              <div className="mt-4 flex flex-wrap w-full gap-2 ">
                 {activities.map((activity) => (
                   <ActivityCard key={activity.title} {...activity} />
                 ))}
@@ -84,10 +85,10 @@ function App() {
             </div>
           </div>
           <div className="mt-12">
-            <h4 className="text-[#1D2433] text-xl font-semibold">
+            <h4 className="text-[#1D2433] text-base md:text-lg lg:text-xl font-semibold">
               Trip itineraries
             </h4>
-            <h6 className="text-sm font-medium text-[#647995]">
+            <h6 className=" text-[12px] md:text-sm font-medium text-[#647995]">
               Your trip itineraries are placed here
             </h6>
             <div className="mt-4 space-y-6">

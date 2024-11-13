@@ -24,9 +24,9 @@ const ActivitiesCard: React.FC<IActivity> = ({
   onRemove,
 }) => {
   return (
-    <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden">
-      <div className="p-4 bg-white w-[97%] flex items-start">
-        <div className="w-1/4">
+    <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden ">
+      <div className="p-2 lg:p-4 bg-white w-[97%] flex items-start">
+        <div className="w-[15%] lg:w-1/4">
           <img
             src="https://via.placeholder.com/150" // Use dynamic image URL if available
             alt={activityName}
@@ -34,17 +34,17 @@ const ActivitiesCard: React.FC<IActivity> = ({
           />
         </div>
         <div className="bg-white w-full">
-          <div className="flex items-start justify-between px-6 py-2">
-            <div className="space-y-4">
+          <div className="flex items-start justify-between px-6 py-2 overflow-x-scroll">
+            <div className="space-y-4  mr-3">
               <div>
-                <p className="text-xl font-semibold text-[#1D2433]">
+                <p className="lg:text-lg text-base xl:text-xl font-semibold text-[#1D2433]">
                   {activityName}
                 </p>
-                <p className="font-medium text-[#1D2433] max-w-md">
+                <p className="font-medium text-[#1D2433] text-[12px] lg:text-sm xl:text-base max-w-md">
                   {description}
                 </p>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex lg:text-lg text-[10px] xl:text-xl items-center gap-2 flex-wrap  w-full lg:gap-4">
                 <div className="flex items-center font-medium text-[#0D6EFD]">
                   <IoLocationOutline className="text-lg" />
                   <p>{location}</p>
@@ -62,18 +62,16 @@ const ActivitiesCard: React.FC<IActivity> = ({
               </div>
             </div>
             <div className="flex flex-col items-end">
-              <div className="flex items-center text-3xl font-semibold text-[#1D2433]">
+              <div className="flex items-center text-base md:text-lg lg:text-xl xl:text-3xl font-semibold text-[#1D2433]">
                 <PiCurrencyNgnBold />
                 <span>{price.toLocaleString("en-NG")}</span>
               </div>
-              <p className="text-[#1D2433] font-medium">
-                {time} on {date}
-              </p>
+              <p className="text-[#1D2433] text-[12px] lg:text-sm xl:text-base font-medium">{time} on {date}</p>
             </div>
           </div>
           <hr />
-          <div className="px-6 py-3 flex items-center justify-between text-lg font-medium text-[#647995]">
-            <div className="flex flex-wrap items-center gap-3">
+          <div className="lg:px-6 lg:py-3 py-2 px-3 flex items-center justify-between text-sm lg:text-base xl:text-lg font-medium text-[#647995]">
+            <div className="flex flex-wrap items-center gap-3 lg:gap-3">
               <span className="font-medium">What's Included:</span>
               {includedItems.map((item, index) => (
                 <span key={index} className="flex items-center gap-1">
@@ -83,7 +81,7 @@ const ActivitiesCard: React.FC<IActivity> = ({
               <span className="text-[#0D6EFD]">See more</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="text-xs font-medium bg-[#0A369D] text-white rounded px-2 py-1">
+              <div className="text-[10px] lg:text-xs font-medium bg-[#0A369D] px-2 text-white rounded w-[50px] py-1">
                 Day {day}
               </div>
               <div>
@@ -93,7 +91,7 @@ const ActivitiesCard: React.FC<IActivity> = ({
             </div>
           </div>
           <hr />
-          <div className="flex justify-between items-center px-6 py-3 text-[#0D6EFD] text-lg font-medium">
+          <div className="flex justify-between items-center px-6 py-3 text-[#0D6EFD] text-sm lg:text-base  xl:text-lg font-medium">
             <div className="space-x-8">
               <a href="#" className="hover:underline">
                 Activity Details

@@ -26,17 +26,19 @@ const ActivitiesSection = ({ query }: { query: string }) => {
     }))
   }, [data])
   return (
-    <div className="px-4 pb-4 bg-[#0054E4]">
+    <div className={`${
+      activitiesData.length > 0 ? "h-[700px]" : ""
+    } "px-4 pb-4 bg-[#0054E4] overflow-y-scroll"`}>
       <div className="flex items-center justify-between  p-4">
         <div className="flex items-center gap-2 text-white">
           <PiRoadHorizonBold className="text-xl" />
-          <span className="text-lg font-semibold ">Activities</span>
+          <span className="text-base lg:text-lg font-semibold ">Activities</span>
         </div>
         <button className="bg-white text-[#1D2433] px-4 py-3 rounded text-sm font-semibold">
           Add Activities
         </button>
       </div>
-      <div className="flex flex-col gap-4 px-4 ">
+      <div className="flex flex-col gap-4 p-4 ">
         {
           activitiesData?.map((activity: any, index: number) => <ActivitiesCard {...activity} key={index} />)
         }

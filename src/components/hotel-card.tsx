@@ -5,9 +5,9 @@ import { PiSwimmingPool, PiWineLight } from "react-icons/pi";
 
 const HotelCard = (props: IHotel) => {
   return (
-    <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden">
-      <div className="p-4 bg-white w-[97%] flex items-start">
-        <div className="w-1/4">
+    <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden ">
+      <div  className="p-2 lg:p-4 bg-white w-[97%] flex items-start">
+        <div className="w-[15%] lg:w-1/4">
           <img
             src={props.photoUrls[0]}
             alt="Hotel"
@@ -15,13 +15,13 @@ const HotelCard = (props: IHotel) => {
           />
         </div>
         <div className="bg-white w-full">
-          <div className="flex items-start justify-between px-6 py-2">
+          <div className="flex items-start justify-between px-6 py-2 overflow-x-scroll">
             <div className="space-y-4">
               <div>
-                <p className="text-xl font-semibold text-[#1D2433]">
+                <p className="text-sm lg:text-base xl:text-xlfont-semibold text-[#1D2433]">
                   {props.name}
                 </p>
-                <p className="font-medium text-[#1D2433] max-w-md">
+                <p className="font-medium text-[12px] lg:text-sm xl:text-base text-[#1D2433] max-w-md">
                   {props.countryCode}
                 </p>
               </div>
