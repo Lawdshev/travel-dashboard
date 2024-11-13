@@ -8,6 +8,8 @@ import { PiBasketLight } from "react-icons/pi";
 import { CiSquarePlus } from "react-icons/ci";
 import { PiCaretDown } from "react-icons/pi";
 import { CiSearch } from "react-icons/ci";
+import { CiMenuBurger } from "react-icons/ci";
+import { MdCancel } from "react-icons/md";
 
 import logo from "../assets/svgs/logo.svg";
 
@@ -53,10 +55,16 @@ const notifications = [
   },
 ];
 
-const Navbar = () => {
+const Navbar = ({
+  navbarOpen,
+  setNavbarOpen,
+}: {
+  navbarOpen: boolean;
+  setNavbarOpen: any;
+}) => {
   return (
     <header className="flex justify-between items-center bg-white py-4 px-8 shadow-md">
-      <div className="flex items-center gap-6">
+      <div className={"flex items-center gap-6"}>
         <img className="w-10" src={logo} alt="Logo" />
         <div className="flex items-center gap-2 bg-[#F0F2F5] px-3 py-2 rounded-md">
           <CiSearch className="text-xl text-gray-500" />
@@ -66,7 +74,7 @@ const Navbar = () => {
           />
         </div>
       </div>
-      <div className="flex items-center gap-6">
+      <div className="hidden lg:flex items-center gap-6">
         {navBarLinks.map((link) => (
           <a
             key={link.name}
@@ -91,6 +99,17 @@ const Navbar = () => {
           </a>
         ))}
       </div>
+      {navbarOpen ? (
+        <MdCancel
+          className="lg:hidden text-3xl self-end cursor-pointer ml-auto transition-all duration-300 ease-in-out"
+          onClick={() => setNavbarOpen(!navbarOpen)}
+        />
+      ) : (
+        <CiMenuBurger
+          className="lg:hidden text-3xl self-end cursor-pointer ml-auto transition-all duration-300 ease-in-out"
+          onClick={() => setNavbarOpen(!navbarOpen)}
+        />
+      )}
     </header>
   );
 };

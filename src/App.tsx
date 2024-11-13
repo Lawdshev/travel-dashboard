@@ -13,35 +13,55 @@ import { PiGear } from "react-icons/pi";
 import FlightsSection from "./sections/flight-sections";
 import HotelsSection from "./sections/hotel-section";
 import ActivitiesSection from "./sections/activities-section";
+import { useState } from "react";
+import DestinationSearch from "./components/destination-search";
+
 
 function App() {
+  const [destination, setDestination] = useState<any>({});
+  const [navbarOpen, setNavbarOpen] = useState(false);
+
   return (
-    <div>
-      <Navbar />
-      <div className="p-8 bg-[#f1f2f5] flex gap-8">
-        <Sidebar />
-        <div className="bg-white p-4">
+    <div className="w-screen overscroll-x-hidden" style={{ overflowX: "hidden" }}>
+      <Navbar navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen} />
+      <div className="p-8 bg-[#f1f2f5] flex justify-between w-full">
+        <Sidebar navbarOpen={navbarOpen}/>
+        <div className="bg-white w-full p-4 lg:w-[70%] xl:w-[75%]">
           <div className="relative">
             <img src={banner} alt="" />
-            <button className="p-3 bg-[#d9edff] rounded-md absolute top-4 left-4">
+            <button className="p-3 rounded-md absolute top-4 left-4">
               <IoMdArrowRoundBack />
             </button>
           </div>
-          <div className="flex justify-between mt-2 ">
-            <div className="">
+          <div className="flex justify-between mt-2 w-full">
+            <div className="w-full">
               <div className="flex items-center gap-2 text-[#7A4504] bg-[#FEF4E6] py-1 px-2 text-sm w-fit">
                 <IoCalendarClearOutline />
                 <span>21 March 2024</span>
                 <FaArrowRight />
                 <span>21 April 2024</span>
               </div>
-              <h1 className="text-2xl font-bold">Bahamas Family Trip</h1>
-              <div className="text-[#676E7E] flex items-center gap-2">
-                <span>New York,  United States of America </span>
+              {/* {destination && (
+                <h1 className="text-2xl font-bold">{destination} Trip</h1>
+              )} */}
+              <div className="text-[#676E7E] flex items-center gap-2 mt-2">
+                <DestinationSearch
+                  destination={destination}
+                  setDestination={setDestination}
+                />
+                {/* <div className="flex items-center gap-2 bg-[#F0F2F5] px-3 py-2 rounded-md">
+                  <CiSearch className="text-xl text-gray-500" />
+                  <input
+                    className="bg-transparent text-sm text-gray-700 p-1 outline-none"
+                    placeholder="Input destination"
+                    value={destination}
+                    onChange={handleSearch}
+                  />
+                </div>
                 <div className="w-[1px] h-4 bg-[#D0D5DD]"></div>
-                <span>Solo Trip</span>
+                <span>Solo Trip</span> */}
               </div>
-              <div className="mt-4 flex gap-2 ">
+              <div className="mt-4 flex flex-wrap w-full gap-2 ">
                 {activities.map((activity) => (
                   <ActivityCard key={activity.title} {...activity} />
                 ))}
@@ -64,16 +84,16 @@ function App() {
             </div>
           </div>
           <div className="mt-12">
-            <h4 className="text-[#1D2433] text-xl font-semibold">
+            <h4 className="text-[#1D2433] text-base md:text-lg lg:text-xl font-semibold">
               Trip itineraries
             </h4>
-            <h6 className="text-sm font-medium text-[#647995]">
+            <h6 className=" text-[12px] md:text-sm font-medium text-[#647995]">
               Your trip itineraries are placed here
             </h6>
             <div className="mt-4 space-y-6">
-              <FlightsSection />
-              <HotelsSection />
-              <ActivitiesSection/>
+              <FlightsSection query={destination.dest_id ?? ""} />
+              <HotelsSection query={destination.dest_id ?? ""} />
+              <ActivitiesSection query={destination.dest_id ?? ""} />
             </div>
           </div>
         </div>
