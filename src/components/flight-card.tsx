@@ -10,20 +10,38 @@ import { GoDotFill } from "react-icons/go";
 import planeLogo from "../assets/svgs/Group.svg";
 import { TbPlaneDeparture } from "react-icons/tb";
 import { LuPlaneLanding } from "react-icons/lu";
+import { IFlightData } from "../utils/types";
 
-const FlightCard = () => {
+
+
+const FlightCard: React.FC<IFlightData> = ({
+  airline,
+  flightNumber,
+  departureTime,
+  departureDate,
+  duration,
+  arrivalTime,
+  arrivalDate,
+  from,
+  to,
+  price,
+  baggage,
+  cabinBaggage,
+  inFlightEntertainment,
+  inFlightMeal,
+  usbPort,
+  onRemove,
+}) => {
   return (
     <div className="flex items-stretch w-full rounded-sm">
       <div className="bg-white w-[97%]">
         <div className="flex items-center justify-between p-4">
-          <div className=" flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <img src={planeLogo} alt="" />
             <div>
-              <p className="text-xl font-semibold text-[#1D2433]">
-                American Airlines
-              </p>
+              <p className="text-xl font-semibold text-[#1D2433]">{airline}</p>
               <div className="flex items-center gap-1">
-                <p className="font-medium text-[#676E7E]">AA-829</p>
+                <p className="font-medium text-[#676E7E]">{flightNumber}</p>
                 <GoDotFill className="text-[8px]" />
                 <span className="text-sm font-semibold bg-blue-600 text-white rounded px-2">
                   First Class
@@ -33,14 +51,18 @@ const FlightCard = () => {
           </div>
           <div className="flex gap-8">
             <div>
-              <p className="text-2xl font-semibold text-[#1D2433]">08:35</p>
-              <p className="text-[#676E7E] font-medium text-sm">Sun, 20 Aug</p>
+              <p className="text-2xl font-semibold text-[#1D2433]">
+                {departureTime}
+              </p>
+              <p className="text-[#676E7E] font-medium text-sm">
+                {departureDate}
+              </p>
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between gap-8">
                 <TbPlaneDeparture className="text-xl" />
                 <span className="text-[#676E7E] font-medium">
-                  Duration: 1h 45m
+                  Duration: {duration}
                 </span>
                 <LuPlaneLanding className="text-xl" />
               </div>
@@ -48,19 +70,23 @@ const FlightCard = () => {
                 <div className="bg-blue-500 h-2 w-1/2 rounded-full"></div>
               </div>
               <div className="flex items-center justify-between">
-                <p className="font-semibold text-[#1D2433]">LOS</p>
+                <p className="font-semibold text-[#1D2433]">{from}</p>
                 <p className="text-[#676E7E] font-medium">Direct</p>
-                <p className="font-semibold text-[#1D2433]">SIN</p>
+                <p className="font-semibold text-[#1D2433]">{to}</p>
               </div>
             </div>
             <div>
-              <p className="text-2xl font-semibold text-[#1D2433]">08:35</p>
-              <p className="text-[#676E7E] font-medium text-sm">Sun, 20 Aug</p>
+              <p className="text-2xl font-semibold text-[#1D2433]">
+                {arrivalTime}
+              </p>
+              <p className="text-[#676E7E] font-medium text-sm">
+                {arrivalDate}
+              </p>
             </div>
           </div>
           <div className="flex items-center text-3xl font-semibold text-[#1D2433]">
             <PiCurrencyNgnBold />
-            <span>123,450.00</span>
+            <span>{price.toLocaleString("en-NG")}</span>
           </div>
         </div>
         <hr />
@@ -69,20 +95,28 @@ const FlightCard = () => {
             <span>Facilities:</span>
             <p className="flex items-center space-x-1">
               <PiSuitcaseRolling />
-              <span>Baggage: 20kg, Cabin Baggage: 8kg</span>
+              <span>
+                Baggage: {baggage}, Cabin Baggage: {cabinBaggage}
+              </span>
             </p>
-            <p className="flex items-center space-x-1">
-              <PiFilmSlate />
-              <span>In-flight entertainment</span>
-            </p>
-            <p className="flex items-center space-x-1">
-              <PiForkKnifeBold />   
-              <span>In-flight meal</span>
-            </p>
-            <p className="flex items-center space-x-1">
-              <PiUsb />
-              <span>USB Port</span>
-            </p>
+            {inFlightEntertainment && (
+              <p className="flex items-center space-x-1">
+                <PiFilmSlate />
+                <span>In-flight entertainment</span>
+              </p>
+            )}
+            {inFlightMeal && (
+              <p className="flex items-center space-x-1">
+                <PiForkKnifeBold />
+                <span>In-flight meal</span>
+              </p>
+            )}
+            {usbPort && (
+              <p className="flex items-center space-x-1">
+                <PiUsb />
+                <span>USB Port</span>
+              </p>
+            )}
           </div>
         </div>
         <hr />
@@ -94,8 +128,10 @@ const FlightCard = () => {
           <a href="#">Edit Details</a>
         </div>
       </div>
-      {/* Remove button */}
-      <div className="bg-[#FBEAE9] flex-1 w-[3%] flex items-center justify-center text-red-700 rounded-r-sm cursor-pointer">
+      <div
+        onClick={onRemove}
+        className="bg-[#FBEAE9] flex-1 w-[3%] flex items-center justify-center text-red-700 rounded-r-sm cursor-pointer"
+      >
         <FaTimes />
       </div>
     </div>

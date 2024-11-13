@@ -4,6 +4,7 @@ import useDestinationActivitiesSearch from "../services/use-getActivities";
 
 const ActivitiesSection = ({ query }: { query: string }) => {
   const { data, error, isLoading } = useDestinationActivitiesSearch(query);
+  console.log({ activities: data });
   return (
     <div className="px-4 pb-4 bg-[#0054E4]">
       <div className="flex items-center justify-between  p-4">
@@ -15,10 +16,11 @@ const ActivitiesSection = ({ query }: { query: string }) => {
           Add Activities
         </button>
       </div>
-      <div className="flex flex-col gap-4 px-4 ">
-        <ActivitiesCard />
-        <ActivitiesCard />
-      </div>
+      {/* <div className="flex flex-col gap-4 px-4 ">
+        {
+          data?.map((activity: any, index: number) => <ActivitiesCard {...activity} key={index} />)
+        }
+      </div> */}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { FaStar, FaTimes } from "react-icons/fa";
-import { PiBedFill, PiCurrencyNgnBold, PiSwimmingPool, PiWineLight } from "react-icons/pi";
-import hotelImage from "../assets/images/Rectangle 3437.png";
+import { PiBedFill, PiSwimmingPool, PiWineLight } from "react-icons/pi";
 import { IoCalendarClearOutline, IoLocationOutline } from "react-icons/io5";
 import { IHotel } from "../utils/types";
 
@@ -45,12 +44,13 @@ const HotelCard = (props: IHotel) => {
             </div>
             <div className="flex flex-col items-end">
               <div className="flex items-center text-3xl font-semibold text-[#1D2433]">
-                <PiCurrencyNgnBold />
-                <span>123,450.00</span>
+                {/* <PiCurrencyNgnBold /> */}
+                <b>{props.priceBreakdown.grossPrice.currency}</b>
+                <span>{props.priceBreakdown.grossPrice.value}</span>
               </div>
               <p className="text-[#1D2433] font-medium">
                 Total Price: {props.priceBreakdown.grossPrice.currency}{" "}
-                {props.priceBreakdown.grossPrice.value}
+                {props.priceBreakdown.grossPrice.value * 10}
               </p>
               <p className="text-[#1D2433] font-medium">
                 1 room x 10 nights incl. taxes
@@ -72,11 +72,15 @@ const HotelCard = (props: IHotel) => {
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-1">
                 <IoCalendarClearOutline color="#475367" />
-                <span className="font-medium">Check In: {props.checkin.fromTime}</span>
+                <span className="font-medium">
+                  Check In: {props.checkin.fromTime}
+                </span>
               </div>
               <div className="flex items-center gap-1">
                 <IoCalendarClearOutline color="#475367" />
-                <span className="font-medium">Check Out: {props.checkout.untilTime} </span>
+                <span className="font-medium">
+                  Check Out: {props.checkout.untilTime}{" "}
+                </span>
               </div>
             </div>
           </div>

@@ -1,10 +1,36 @@
 import { TbPlaneInflight } from "react-icons/tb";
 import FlightCard from "../components/flight-card";
 import useDestinationFlightsSearch from "../services/use-getFlights";
+import { useMemo } from "react";
+import { IFlightData } from "../utils/types";
 
 const FlightsSection = ({ query }: { query: string }) => {
   const { data, error, isLoading } = useDestinationFlightsSearch(query);
+  console.log({ flights: data });
+const flightsData = useMemo<IFlightData[]>(() => {
+  if (!data || data.flightOffers.length === 0) return [];
 
+  return data.flightOffers.map((flight: any) => ({
+    //check amenities for facilities
+    airline: flight.segments[0]?.legs[0]?.carriersData[0]?.name || "",
+    flightNumber: flight.segments[0]?.legs[0]?.flightInfo?.flightNumber || "",
+    departureTime: flight.segments[0]?.legs[0]?.departureTime || "",
+    departureDate: flight.segments[0]?.legs[0]?.departureTime || "",
+    duration: flight.segments[0]?.legs[0]?.totalTime || "",
+    arrivalTime: flight.segments[0]?.legs[0]?.arrivalTime || "",
+    arrivalDate: flight.segments[0]?.legs[0]?.arrivalTime || "",
+    from: flight.segments[0]?.legs[0]?.departureAirport?.city || "",
+    to: flight.segments[0]?.legs[0]?.arrivalAirport?.city || "",
+    price: flight.priceBreakDown?.total.nanos || 0,
+    baggage: flight.segments[0]?.travellerCheckedLuggage[0]?.luggageAllowance?.maxWeightPerPiece || 0,
+    cabinBaggage: flight.segments[0]?.travellerCabinLuggage[0]?.luggageAllowance?.maxWeightPerPiece || 0,
+    inFlightEntertainment: true,
+    inFlightMeal: true,
+    usbPort: true,
+    onRemove: () => {},
+  }));
+}, [data]);
+  
   return (
     <div className="px-4 pb-4 bg-[#F0F2F5]">
       <div className="flex items-center justify-between  p-4">
@@ -17,8 +43,9 @@ const FlightsSection = ({ query }: { query: string }) => {
         </button>
       </div>
       <div className="flex flex-col gap-4 px-4">
-        <FlightCard />
-        <FlightCard />
+        {
+          flightsData?.map((flight: any, index: number) => <FlightCard {...flight} key={index} />)
+        }
       </div>
     </div>
   );

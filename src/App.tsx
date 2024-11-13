@@ -15,10 +15,11 @@ import HotelsSection from "./sections/hotel-section";
 import ActivitiesSection from "./sections/activities-section";
 import { useState } from "react";
 import DestinationSearch from "./components/destination-search";
+import { IDestination } from "./utils/types";
 
 
 function App() {
-  const [destination, setDestination] = useState<any>({});
+  const [destination, setDestination] = useState<IDestination>({} as IDestination);
 
   return (
     <div>
@@ -90,7 +91,7 @@ function App() {
               Your trip itineraries are placed here
             </h6>
             <div className="mt-4 space-y-6">
-              <FlightsSection query={destination.dest_id ?? ""} />
+              <FlightsSection query={destination.city_name ?? ""} />
               <HotelsSection query={destination.dest_id ?? ""} />
               <ActivitiesSection query={destination.dest_id ?? ""} />
             </div>

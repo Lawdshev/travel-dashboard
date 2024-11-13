@@ -42,3 +42,42 @@ export interface IHotel {
     blockIds: string[]; // Array of block IDs (e.g., ["7471708_158036154_2_42_0"])
     currency: string; // Currency code (e.g., "INR")
 }
+
+export interface IDestination {
+  dest_type: string; // Type of destination, e.g., "district"
+  cc1: string; // Country code, e.g., "us"
+  city_name: string; // Name of the city, e.g., "New York"
+  label: string; // Full label for the location, e.g., "Manhattan, New York, New York State, United States"
+  longitude: number; // Longitude, e.g., -73.970894
+  latitude: number; // Latitude, e.g., 40.776115
+  type: string; // Short type code, e.g., "di"
+  region: string; // Region or state, e.g., "New York State"
+  city_ufi: number; // Unique identifier for the city, e.g., 20088325
+  name: string; // Name of the district, e.g., "Manhattan"
+  roundtrip: string; // Roundtrip code, e.g., "GgEwIAAoATICZW46A21hbkAASgBQAA=="
+  country: string; // Full country name, e.g., "United States"
+  image_url: string; // URL of the destination's image, e.g., "https://cf.bstatic.com/xdata/images/district/150x150/37931.jpg..."
+  dest_id: string; // Destination ID, e.g., "929"
+  nr_hotels: number; // Number of hotels in the area, e.g., 568
+  lc: string; // Language code, e.g., "en"
+  hotels: number; // Number of hotels, e.g., 568
+}
+
+export interface IFlightData {
+  airline: string;
+  flightNumber: string;
+  departureTime: string;
+  departureDate: string;
+  duration: string;
+  arrivalTime: string;
+  arrivalDate: string;
+  from: string;
+  to: string;
+  price: number;
+  baggage: string;
+  cabinBaggage: string;
+  inFlightEntertainment: boolean;
+  inFlightMeal: boolean;
+  usbPort: boolean;
+  onRemove: () => void;
+}

@@ -6,7 +6,7 @@ const useDestinationFlightsSearch = (query: string) => {
     queryKey: ["flights", query],
     queryFn: () =>
       fetchRequest(
-        `https://booking-com15.p.rapidapi.com/api/v1/flights/searchDestination?dest_id=${query}`
+        `https://booking-com15.p.rapidapi.com/api/v1/flights/searchDestination?query=${query}`
       ),
     enabled: !!query,
     retry: 1,

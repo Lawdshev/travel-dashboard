@@ -5,18 +5,44 @@ import {
   PiCaretCircleUp,
   PiCaretCircleDown,
 } from "react-icons/pi";
-import hotelImage from "../assets/images/Rectangle 3437.png";
-import {  IoLocationOutline } from "react-icons/io5";
+import { IoLocationOutline } from "react-icons/io5";
 
+interface IActivityProps {
+  activityName: string;
+  description: string;
+  location: string;
+  rating: number;
+  reviews: number;
+  duration: string;
+  price: number;
+  time: string;
+  date: string;
+  includedItems: string[];
+  day: number;
+  onRemove: () => void;
+}
 
-const ActivitiesCard = () => {
+const ActivitiesCard: React.FC<IActivityProps> = ({
+  activityName,
+  description,
+  location,
+  rating,
+  reviews,
+  duration,
+  price,
+  time,
+  date,
+  includedItems,
+  day,
+  onRemove,
+}) => {
   return (
-    <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden ">
+    <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden">
       <div className="p-4 bg-white w-[97%] flex items-start">
         <div className="w-1/4">
           <img
-            src={hotelImage}
-            alt="Hotel"
+            src="https://via.placeholder.com/150" // Use dynamic image URL if available
+            alt={activityName}
             className="w-full h-full object-cover"
           />
         </div>
@@ -25,48 +51,53 @@ const ActivitiesCard = () => {
             <div className="space-y-4">
               <div>
                 <p className="text-xl font-semibold text-[#1D2433]">
-                  American Airlines
+                  {activityName}
                 </p>
                 <p className="font-medium text-[#1D2433] max-w-md">
-                  Works from Van Gogh to Warhol & beyond plus a sculpture
-                  garden, 2 cafes & The modern restaurant
+                  {description}
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center font-medium text-[#0D6EFD]">
                   <IoLocationOutline className="text-lg" />
-                  <p>Direction</p>
+                  <p>{location}</p>
                 </div>
                 <div className="flex items-center text-[#676E7E] font-medium">
                   <FaStar color="#F4B93E" />
-                  <p className="text-[#676E7E] font-medium">8.5 (436)</p>
+                  <p>
+                    {rating} ({reviews})
+                  </p>
                 </div>
                 <div className="flex items-center gap-1">
                   <PiClockBold />
-                  <p className="text-[#676E7E] font-medium">1 Hour</p>
+                  <p>{duration}</p>
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-end">
               <div className="flex items-center text-3xl font-semibold text-[#1D2433]">
                 <PiCurrencyNgnBold />
-                <span>123,450.00</span>
+                <span>{price.toLocaleString("en-NG")}</span>
               </div>
-              <p className="text-[#1D2433] font-medium">10:30 AM on Mar 19</p>
+              <p className="text-[#1D2433] font-medium">
+                {time} on {date}
+              </p>
             </div>
           </div>
           <hr />
-          <div className="px-6 py-3 flex items-center justify-between  text-lg font-medium text-[#647995]">
+          <div className="px-6 py-3 flex items-center justify-between text-lg font-medium text-[#647995]">
             <div className="flex flex-wrap items-center gap-3">
               <span className="font-medium">What's Included:</span>
-              <span className="flex items-center gap-1">
-                Admission to the Empire State Building
-              </span>
+              {includedItems.map((item, index) => (
+                <span key={index} className="flex items-center gap-1">
+                  {item}
+                </span>
+              ))}
               <span className="text-[#0D6EFD]">See more</span>
             </div>
             <div className="flex items-center gap-3">
               <div className="text-xs font-medium bg-[#0A369D] text-white rounded px-2 py-1">
-                Day 1
+                Day {day}
               </div>
               <div>
                 <PiCaretCircleUp />
@@ -78,7 +109,7 @@ const ActivitiesCard = () => {
           <div className="flex justify-between items-center px-6 py-3 text-[#0D6EFD] text-lg font-medium">
             <div className="space-x-8">
               <a href="#" className="hover:underline">
-                Hotel Details
+                Activity Details
               </a>
               <a href="#" className="hover:underline">
                 Price Details
@@ -91,7 +122,10 @@ const ActivitiesCard = () => {
         </div>
       </div>
       {/* Remove button */}
-      <div className="bg-[#FBEAE9] flex items-center justify-center text-red-700 w-[3%] cursor-pointer">
+      <div
+        onClick={onRemove}
+        className="bg-[#FBEAE9] flex items-center justify-center text-red-700 w-[3%] cursor-pointer"
+      >
         <FaTimes className="text-lg" />
       </div>
     </div>
