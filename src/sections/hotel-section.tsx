@@ -2,11 +2,11 @@ import { PiWarehouseBold } from "react-icons/pi";
 import useHotelsSearch from "../services/use-getHotelDetails";
 import { IHotel } from "../utils/types";
 import { useMemo } from "react";
-import EmptyState from "./empty-state";
+import EmptyState from "../components/empty-state";
 import HotelCard from "../components/hotel-card";
 
 const HotelsSection = ({ query }: { query: string }) => {
-  const { data, error, isLoading } = useHotelsSearch(query ?? "");
+  const { data, isLoading } = useHotelsSearch(query ?? "");
   const hotelData = useMemo<IHotel[]>(() => {
     if (!data || data.hotels?.length === 0) return [];
 
@@ -60,6 +60,13 @@ const HotelsSection = ({ query }: { query: string }) => {
             buttonText="Add Hotels"
           />
         )}
+        {
+          isLoading && (
+            <div className="flex items-center justify-center py-8 mx-auto text-center">
+              Fetching Hotels...
+            </div>
+          )
+        }
       </div>
     </div>
   );

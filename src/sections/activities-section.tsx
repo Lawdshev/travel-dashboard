@@ -1,8 +1,9 @@
-import { PiRoadHorizonBold } from "react-icons/pi";
+import { PiRoadHorizonBold, PiWarehouseBold } from "react-icons/pi";
 import ActivitiesCard from "../components/activities-card";
 import useDestinationActivitiesSearch from "../services/use-getActivities";
 import { useMemo } from "react";
 import { IActivity } from "../utils/types";
+import EmptyState from "../components/empty-state";
 
 const ActivitiesSection = ({ query }: { query: string }) => {
   const { data, error, isLoading } = useDestinationActivitiesSearch(query);
@@ -26,22 +27,39 @@ const ActivitiesSection = ({ query }: { query: string }) => {
     }))
   }, [data])
   return (
-    <div className={`${
-      activitiesData.length > 0 ? "h-[700px]" : ""
-    } "px-4 pb-4 bg-[#0054E4] overflow-y-scroll"`}>
+    <div
+      className={`${
+        activitiesData.length > 0 ? "h-[700px]" : ""
+      } "px-4 pb-4 bg-[#0054E4] overflow-y-scroll"`}
+    >
       <div className="flex items-center justify-between  p-4">
         <div className="flex items-center gap-2 text-white">
           <PiRoadHorizonBold className="text-xl" />
-          <span className="text-base lg:text-lg font-semibold ">Activities</span>
+          <span className="text-base lg:text-lg font-semibold ">
+            Activities
+          </span>
         </div>
         <button className="bg-white text-[#1D2433] px-4 py-3 rounded text-sm font-semibold">
           Add Activities
         </button>
       </div>
       <div className="flex flex-col gap-4 p-4 ">
-        {
-          activitiesData?.map((activity: any, index: number) => <ActivitiesCard {...activity} key={index} />)
-        }
+        {activitiesData?.map((activity: any, index: number) => (
+          <ActivitiesCard {...activity} key={index} />
+        ))}
+        {!data && (
+          <EmptyState
+            icon={
+              <PiWarehouseBold className="text-6xl text-gray-300" size={100} />
+            }
+            buttonText="Add Activities"
+          />
+        )}
+        {isLoading && (
+          <div className="flex items-center justify-center py-8 mx-auto text-center">
+            Fetching Activities...
+          </div>
+        )}
       </div>
     </div>
   );

@@ -60,13 +60,14 @@ const Navbar = ({
   setNavbarOpen,
 }: {
   navbarOpen: boolean;
-  setNavbarOpen: any;
+  setNavbarOpen: (open: boolean) => void;
 }) => {
   return (
-    <header className="flex justify-between items-center bg-white py-4 px-8 shadow-md">
-      <div className={"flex items-center gap-6"}>
+    <header className="flex justify-between items-center bg-white py-4 px-6 lg:px-8 shadow-md relative">
+      {/* Logo and Search */}
+      <div className="flex items-center gap-6">
         <img className="w-10" src={logo} alt="Logo" />
-        <div className="flex items-center gap-2 bg-[#F0F2F5] px-3 py-2 rounded-md">
+        <div className="hidden md:flex items-center gap-2 bg-[#F0F2F5] px-3 py-2 rounded-md">
           <CiSearch className="text-xl text-gray-500" />
           <input
             className="bg-transparent text-sm text-gray-700 p-1 outline-none"
@@ -74,6 +75,8 @@ const Navbar = ({
           />
         </div>
       </div>
+
+      {/* Large Screen Navbar Links */}
       <div className="hidden lg:flex items-center gap-6">
         {navBarLinks.map((link) => (
           <a
@@ -99,17 +102,63 @@ const Navbar = ({
           </a>
         ))}
       </div>
-      {navbarOpen ? (
-        <MdCancel
-          className="lg:hidden text-3xl self-end cursor-pointer ml-auto transition-all duration-300 ease-in-out"
-          onClick={() => setNavbarOpen(!navbarOpen)}
-        />
-      ) : (
-        <CiMenuBurger
-          className="lg:hidden text-3xl self-end cursor-pointer ml-auto transition-all duration-300 ease-in-out"
-          onClick={() => setNavbarOpen(!navbarOpen)}
-        />
-      )}
+
+      {/* Mobile Menu Toggle */}
+      <div className="lg:hidden">
+        {navbarOpen ? (
+          <MdCancel
+            className="text-3xl text-gray-700 cursor-pointer"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          />
+        ) : (
+          <CiMenuBurger
+            className="text-3xl text-gray-700 cursor-pointer"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          />
+        )}
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`${
+          navbarOpen ? "block" : "hidden"
+        } absolute top-16 left-0 w-full bg-white shadow-lg lg:hidden z-10`}
+      >
+        <div className="p-6 space-y-4">
+          {/* Mobile search bar */}
+          <div className="flex items-center gap-2 bg-[#F0F2F5] px-3 py-2 rounded-md mb-4">
+            <CiSearch className="text-xl text-gray-500" />
+            <input
+              className="bg-transparent text-sm text-gray-700 p-1 outline-none"
+              placeholder="Search"
+            />
+          </div>
+          {/* Links */}
+          {navBarLinks.map((link) => (
+            <a
+              key={link.name}
+              className="flex items-center gap-4 text-[#647995] hover:text-blue-500 text-sm"
+            >
+              <link.icon className="text-2xl" />
+              <span>{link.name}</span>
+            </a>
+          ))}
+          <div className="w-full h-px bg-[#98A2B3] my-4"></div>
+          {/* Notifications */}
+          {notifications.map((link) => (
+            <a
+              key={link.name}
+              className="flex items-center gap-4 text-[#647995] hover:text-blue-500 text-sm"
+            >
+              <link.icon className="text-2xl" />
+              <span>{link.name}</span>
+            </a>
+          ))}
+          <button className="bg-blue-500 text-white w-full py-2 rounded-lg text-sm">
+            Subscribe
+          </button>
+        </div>
+      </div>
     </header>
   );
 };

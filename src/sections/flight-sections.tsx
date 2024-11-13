@@ -3,9 +3,10 @@ import FlightCard from "../components/flight-card";
 import useDestinationFlightsSearch from "../services/use-getFlights";
 import { useMemo } from "react";
 import { IFlightData } from "../utils/types";
-import EmptyState from "./empty-state";
+import EmptyState from "../components/empty-state";
 import { RiFlightTakeoffFill } from "react-icons/ri";
 import { useState } from "react";
+import { PiWarehouseBold } from "react-icons/pi";
 
 const FlightsSection = ({ query }: { query: string }) => {
   const { data, error, isLoading } = useDestinationFlightsSearch(query);
@@ -60,6 +61,19 @@ const FlightsSection = ({ query }: { query: string }) => {
         {flightsData?.map((flight: any, index: number) => (
           <FlightCard {...flight} key={index} />
         ))}
+        {!data && (
+          <EmptyState
+            icon={
+              <PiWarehouseBold className="text-6xl text-gray-300" size={100} />
+            }
+            buttonText="Add Flights"
+          />
+        )}
+        {isLoading && (
+          <div className="flex items-center justify-center py-8 mx-auto text-center">
+            Fetching Flights...
+          </div>
+        )}
       </div>
     </div>
   );

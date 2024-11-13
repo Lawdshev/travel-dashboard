@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FaPlane,
   FaHotel,
@@ -30,82 +30,58 @@ const Sidebar = ({ navbarOpen }: { navbarOpen: boolean }) => {
     { name: "Medical", icon: FaStethoscope },
     { name: "Vacation Packages", icon: FaBoxOpen },
   ];
+
   const navBarLinks = [
-    {
-      name: "Home",
-      icon: GoHome,
-    },
-    {
-      name: "Dashboard",
-      icon: PiChartPieSlice,
-    },
-    {
-      name: "Wallet",
-      icon: PiWalletLight,
-    },
-    {
-      name: "PlanTrip",
-      icon: GrTask,
-    },
-    {
-      name: "Commission for life",
-      icon: PiHandCoinsLight,
-    },
+    { name: "Home", icon: GoHome },
+    { name: "Dashboard", icon: PiChartPieSlice },
+    { name: "Wallet", icon: PiWalletLight },
+    { name: "PlanTrip", icon: GrTask },
+    { name: "Commission for life", icon: PiHandCoinsLight },
   ];
 
   const notifications = [
-    {
-      name: "Notifications",
-      icon: FiBell,
-    },
-    {
-      name: "Cart",
-      icon: PiBasketLight,
-    },
-    {
-      name: "Create",
-      icon: CiSquarePlus,
-    },
+    { name: "Notifications", icon: FiBell },
+    { name: "Cart", icon: PiBasketLight },
+    { name: "Create", icon: CiSquarePlus },
   ];
 
   return (
     <div
-      className={`${navbarOpen ? "translate-x-0" : "-translate-x-full"} 
-      fixed top-0 left-0 w-[250px] h-full bg-white text-base md:text-lg p-6 rounded-sm transform transition-transform duration-300 ease-in-out z-10 overflow-y-scroll lg:translate-x-0 md:w-[250px] lg:relative lg:h-auto lg:max-h-[calc(100vh-100px)]`}
+      className={`${
+        navbarOpen ? "translate-x-0" : "-translate-x-full"
+      } fixed top-0 left-0 w-[300px] h-full bg-white text-base md:text-lg p-6 shadow-lg rounded-sm transform transition-transform duration-300 ease-in-out z-10 overflow-y-auto lg:translate-x-0 lg:relative lg:w-[250px] lg:h-auto lg:mt-0 lg:z-auto`}
     >
-      <div className="flex lg:hidden flex-col  space-y-8 mt-8 w-full">
+      {/* Top Navigation Links (Mobile) */}
+      <div className="flex lg:hidden flex-col space-y-8 mt-8 w-full">
         {navBarLinks.map((link) => (
           <a
             key={link.name}
-            className="flex items-center gap-4 text-gray-600 hover:text-blue-500cursor-pointer"
+            className="flex items-center gap-4 text-gray-600 hover:text-blue-500 cursor-pointer"
           >
             <link.icon className="text-2xl mb-1" />
             <span>{link.name}</span>
           </a>
         ))}
-        <div className={"hidden lg:flex w-[1px] h-8 bg-[#98A2B3]"}></div>
         <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
           Subscribe
         </button>
-        <div className={"hidden lg:flex w-10 h-10 bg-gray-300 rounded-full"}></div>
-        {notifications.map((link) => (
-          <a
-            key={link.name}
-            className=" flex items-center gap-4 text-gray-600 hover:text-blue-500 cursor-pointer"
-          >
-            <link.icon className="text-2xl mb-1" />
-            <span>{link.name}</span>
-          </a>
-        ))}
-         <a
-  
-            className={"hidden lg:flex items-center gap-4 text-gray-600 hover:text-blue-500 cursor-pointer"}
-          >
+        <div className="flex items-center gap-4 mt-4">
+          {notifications.map((link) => (
+            <a
+              key={link.name}
+              className="flex items-center gap-4 text-gray-600 hover:text-blue-500 cursor-pointer"
+            >
+              <link.icon className="text-2xl mb-1" />
+              <span>{link.name}</span>
+            </a>
+          ))}
+          <a className="flex items-center gap-4 text-gray-600 hover:text-blue-500 cursor-pointer">
             <PiCaretDown className="text-2xl mb-1" />
-        
           </a>
+        </div>
       </div>
 
+      {/* Sidebar Menu Items */}
       <nav className="flex flex-col space-y-8 mt-8">
         {menuItems.map((item, index) => (
           <a
@@ -114,11 +90,12 @@ const Sidebar = ({ navbarOpen }: { navbarOpen: boolean }) => {
             className="flex items-center gap-4 text-gray-600 hover:text-blue-500"
           >
             <item.icon className="text-2xl" />
-            <span className="">{item.name}</span>
+            <span>{item.name}</span>
           </a>
         ))}
       </nav>
 
+      {/* Account Section */}
       <div className="mt-16">
         <div className="flex items-center justify-between p-4 bg-gray-100 rounded-lg">
           <div className="flex items-center gap-2">

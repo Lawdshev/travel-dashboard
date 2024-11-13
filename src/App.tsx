@@ -23,11 +23,16 @@ function App() {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <div className="w-screen overscroll-x-hidden" style={{ overflowX: "hidden" }}>
+    <div
+      className="w-screen overscroll-x-hidden"
+      style={{ overflowX: "hidden" }}
+    >
       <Navbar navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen} />
-      <div className="p-8 bg-[#f1f2f5] flex justify-between w-full">
-        <Sidebar navbarOpen={navbarOpen}/>
-        <div className="bg-white w-full p-4 lg:w-[70%] xl:w-[75%]">
+      <div className="p-4 sm:p-6 md:p-8 lg:p-3 xl:p-8 bg-[#f1f2f5] grid grid-cols-1 md:grid-cols-10 w-full space-y-4 md:space-x-1 md:space-y-0">
+        <div className="hidden md:block md:col-span-3 lg:col-span-2 overflow-hidden">
+          <Sidebar navbarOpen={navbarOpen} />
+        </div>
+        <div className="bg-white w-full p-4 sm:p-6 md:p-8 col-span-1 md:col-span-7 lg:col-span-8">
           <div className="relative">
             <img src={banner} alt="" />
             <button className="p-3 rounded-md absolute top-4 left-4">
@@ -42,25 +47,11 @@ function App() {
                 <FaArrowRight />
                 <span>21 April 2024</span>
               </div>
-              {/* {destination && (
-                <h1 className="text-2xl font-bold">{destination} Trip</h1>
-              )} */}
               <div className="text-[#676E7E] flex items-center gap-2 mt-2">
                 <DestinationSearch
                   destination={destination}
                   setDestination={setDestination}
                 />
-                {/* <div className="flex items-center gap-2 bg-[#F0F2F5] px-3 py-2 rounded-md">
-                  <CiSearch className="text-xl text-gray-500" />
-                  <input
-                    className="bg-transparent text-sm text-gray-700 p-1 outline-none"
-                    placeholder="Input destination"
-                    value={destination}
-                    onChange={handleSearch}
-                  />
-                </div>
-                <div className="w-[1px] h-4 bg-[#D0D5DD]"></div>
-                <span>Solo Trip</span> */}
               </div>
               <div className="mt-4 flex flex-wrap w-full gap-2 ">
                 {activities.map((activity) => (
