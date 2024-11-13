@@ -6,23 +6,10 @@ import {
   PiCaretCircleDown,
 } from "react-icons/pi";
 import { IoLocationOutline } from "react-icons/io5";
+import { IActivity } from "../utils/types";
 
-interface IActivityProps {
-  activityName: string;
-  description: string;
-  location: string;
-  rating: number;
-  reviews: number;
-  duration: string;
-  price: number;
-  time: string;
-  date: string;
-  includedItems: string[];
-  day: number;
-  onRemove: () => void;
-}
 
-const ActivitiesCard: React.FC<IActivityProps> = ({
+const ActivitiesCard: React.FC<IActivity> = ({
   activityName,
   description,
   location,

@@ -93,7 +93,7 @@ function App() {
             <div className="mt-4 space-y-6">
               <FlightsSection query={destination.city_name ?? ""} />
               <HotelsSection query={destination.dest_id ?? ""} />
-              <ActivitiesSection query={destination.dest_id ?? ""} />
+              <ActivitiesSection query={destination.cc1 ?? ""} />
             </div>
           </div>
         </div>

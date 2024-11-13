@@ -1,11 +1,11 @@
 import { FaStar, FaTimes } from "react-icons/fa";
-import { PiBedFill, PiSwimmingPool, PiWineLight } from "react-icons/pi";
 import { IoCalendarClearOutline, IoLocationOutline } from "react-icons/io5";
 import { IHotel } from "../utils/types";
+import { PiSwimmingPool, PiWineLight } from "react-icons/pi";
 
 const HotelCard = (props: IHotel) => {
   return (
-    <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden ">
+    <div className="flex items-stretch w-full rounded-lg shadow-lg overflow-hidden">
       <div className="p-4 bg-white w-[97%] flex items-start">
         <div className="w-1/4">
           <img
@@ -37,14 +37,12 @@ const HotelCard = (props: IHotel) => {
                   </p>
                 </div>
                 <div className="flex items-center gap-1">
-                  <PiBedFill />
-                  <p className="text-[#676E7E] font-medium">King size room</p>
+                  <p>{props.roomType}</p>
                 </div>
               </div>
             </div>
             <div className="flex flex-col items-end">
               <div className="flex items-center text-3xl font-semibold text-[#1D2433]">
-                {/* <PiCurrencyNgnBold /> */}
                 <b>{props.priceBreakdown.grossPrice.currency}</b>
                 <span>{props.priceBreakdown.grossPrice.value}</span>
               </div>
@@ -58,7 +56,16 @@ const HotelCard = (props: IHotel) => {
             </div>
           </div>
           <hr />
-          <div className="px-6 py-3 flex items-center justify-between  text-lg font-medium text-[#647995]">
+          <div className="px-6 py-3 flex items-center justify-between text-lg font-medium text-[#647995]">
+            {/* <div className="flex flex-wrap items-center gap-3">
+              <span className="font-medium">Facilities:</span>
+              {props.facilities.map((facility, index) => (
+                <span key={index} className="flex items-center gap-1">
+                  {facility.icon}
+                  <span>{facility.name}</span>
+                </span>
+              ))}
+            </div> */}
             <div className="flex flex-wrap items-center gap-3">
               <span className="font-medium">Facilities:</span>
               <span className="flex items-center gap-1">
@@ -100,7 +107,6 @@ const HotelCard = (props: IHotel) => {
           </div>
         </div>
       </div>
-      {/* Remove button */}
       <div className="bg-[#FBEAE9] flex items-center justify-center text-red-700 w-[3%] cursor-pointer">
         <FaTimes className="text-lg" />
       </div>
