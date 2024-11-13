@@ -6,7 +6,7 @@ const fetchRequest = async (url: string) => {
     method: "GET",
     url,
     headers: {
-      "x-rapidapi-key": "a5c17d9f8dmsh6ed36fd3b1bf1aap13dfe6jsn042f8b8e5586",
+      "x-rapidapi-key": "d605520f63mshc0e090540e2ca32p12572djsnabe4db229f1c",
       "x-rapidapi-host": "booking-com15.p.rapidapi.com",
     },
   };

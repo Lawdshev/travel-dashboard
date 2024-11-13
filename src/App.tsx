@@ -22,6 +22,8 @@ function App() {
   const [destination, setDestination] = useState<IDestination>({} as IDestination);
   const [navbarOpen, setNavbarOpen] = useState(false);
 
+  console.log(destination)
+
   return (
     <div
       className="w-screen overscroll-x-hidden"
@@ -55,7 +57,7 @@ function App() {
               </div>
               <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-9 gap-4 w-full ">
                 {activities.map((activity) => (
-                  <div className="col-span-1 sm:col-span-1 lg:col-span-3 lg:min-w-[200px]">
+                  <div className="col-span-1 sm:col-span-1 lg:col-span-3 lg:min-w-[200px]" key={activity.title}>
                     <ActivityCard key={activity.title} {...activity} />
                   </div>
                 ))}

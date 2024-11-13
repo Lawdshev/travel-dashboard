@@ -4,15 +4,14 @@ import useDestinationFlightsSearch from "../services/use-getFlights";
 import { useMemo } from "react";
 import { IFlightData } from "../utils/types";
 import EmptyState from "../components/empty-state";
-import { RiFlightTakeoffFill } from "react-icons/ri";
-import { useState } from "react";
 import { PiWarehouseBold } from "react-icons/pi";
+import { getRandomFlightData } from "../utils/data";
 
 const FlightsSection = ({ query }: { query: string }) => {
-  const { data, error, isLoading } = useDestinationFlightsSearch(query);
-  console.log({ flights: data });
+  const { data, isLoading } = useDestinationFlightsSearch(query);
+
   const flightsData = useMemo<IFlightData[]>(() => {
-    if (!data || data.flightOffers.length === 0) return [];
+    if (!data || data.flightOffers.length === 0) return getRandomFlightData(5);
 
     return data.flightOffers.map((flight: any) => ({
       //check amenities for facilities
@@ -38,6 +37,8 @@ const FlightsSection = ({ query }: { query: string }) => {
       onRemove: () => {},
     }));
   }, [data]);
+
+  console.log({data,flightsData})
 
   return (
     <div

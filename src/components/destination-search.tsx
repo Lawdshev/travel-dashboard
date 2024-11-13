@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import useDestinationHotelsSearch from "../services/use-getHotels";
+import { IDestination } from "../utils/types";
 
 interface IProp { 
   setDestination: React.SetStateAction<any>;
@@ -31,13 +32,11 @@ export default function DestinationSearch({setDestination,destination}:IProp) {
   // Fetch destination suggestions
   const { data: destinations, isLoading } =
       useDestinationHotelsSearch(query);
-    
-    console.log(destinations)
+  
 
   // Handler for input change
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setDestination(value);
     debouncedSetQuery(value);
     setIsDropdownOpen(!!value);
   };
@@ -63,12 +62,12 @@ export default function DestinationSearch({setDestination,destination}:IProp) {
           {isLoading ? (
             <div className="p-2 text-center text-gray-500">Loading...</div>
           ) : destinations?.length ? (
-            destinations.map((dest: any) => (
+            destinations.map((dest:IDestination) => (
               <div
                 key={dest.dest_id}
                 className="p-2 cursor-pointer hover:bg-gray-100 border-b-2 border-gray-600"
                 onClick={() => {
-                  setDestination(dest.label);
+                  setDestination(dest);
                   setIsDropdownOpen(false);
                 }}
               >

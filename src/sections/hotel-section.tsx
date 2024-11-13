@@ -4,11 +4,12 @@ import { IHotel } from "../utils/types";
 import { useMemo } from "react";
 import EmptyState from "../components/empty-state";
 import HotelCard from "../components/hotel-card";
+import { getRandomHotelData } from "../utils/data";
 
 const HotelsSection = ({ query }: { query: string }) => {
   const { data, isLoading } = useHotelsSearch(query ?? "");
   const hotelData = useMemo<IHotel[]>(() => {
-    if (!data || data.hotels?.length === 0) return [];
+    if (!data || data.hotels?.length === 0) return getRandomHotelData(5);
 
     return data.hotels.map((hotel: any) => ({
       photoUrls: hotel.property?.photoUrls ?? [],
@@ -32,7 +33,7 @@ const HotelsSection = ({ query }: { query: string }) => {
       facilities: hotel.facilities ?? [],
     }))
   }, [data]);
-  
+  console.log({ data, hotelData });
   return (
     <div
       className={`${
